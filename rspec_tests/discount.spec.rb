@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 describe Cashbox do
@@ -21,7 +23,7 @@ describe Cashbox do
       basket.filling_basket('a', 3)
       discount = Discount.new(basket.basket)
 
-      expect(discount.basket_collection).to eql(["b", "b", "b", "a", "a", "a"])
+      expect(discount.basket_collection).to eql(%w[b b b a a a])
     end
   end
 end

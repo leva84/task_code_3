@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'market'
 require 'basket'
 require 'discount'

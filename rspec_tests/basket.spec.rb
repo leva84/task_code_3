@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 describe Basket do
@@ -27,7 +29,7 @@ describe Basket do
 
       expect(basket.show_basket.class).to eql(Array)
       expect(basket.show_basket[0].class).to eql(String)
-      expect(basket.show_basket[0]).to eql("d кол-во 3")
+      expect(basket.show_basket[0]).to eql('d кол-во 3')
     end
   end
 end

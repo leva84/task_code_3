@@ -1,14 +1,15 @@
-class Basket < Market
+# frozen_string_literal: true
 
+class Basket < Market
   attr_reader :basket
 
   def initialize
     super
-    @basket = Hash.new
+    @basket = {}
   end
 
   def filling_basket(product, count)
-    basket[product] = count.to_i if price.has_key?(product)
+    basket[product] = count.to_i if price.key?(product)
   end
 
   def show_basket

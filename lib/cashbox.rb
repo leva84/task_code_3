@@ -1,5 +1,6 @@
-class Cashbox < Market
+# frozen_string_literal: true
 
+class Cashbox < Market
   attr_reader :basket, :discount
 
   def initialize(discount, basket)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 describe Cashbox do
@@ -9,7 +11,7 @@ describe Cashbox do
       cashbox = Cashbox.new(discount, basket.basket)
 
       expect(cashbox.discount).to eql(0)
-      expect(cashbox.basket).to eql(['a', 'a', 'a'])
+      expect(cashbox.basket).to eql(%w[a a a])
     end
   end
 

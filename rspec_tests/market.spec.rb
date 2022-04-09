@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 describe Market do
@@ -25,7 +27,7 @@ describe Market do
 
       expect(market.view_price.class).to eql(Array)
       expect(market.view_price.empty?).to eql(false)
-      expect(market.view_price[0]).to eql("a стоит 10$")
+      expect(market.view_price[0]).to eql('a стоит 10$')
     end
   end
 end
