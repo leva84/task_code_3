@@ -8,6 +8,8 @@ class Discount < Market
   PROMO_DISCOUNT_A_M = ['a', 'm', 0.05]
   NO_DISCOUNT_PRODUCT = ['a', 'c']
 
+  attr_reader :discount, :basket_collection
+
   def initialize(basket)
     super
     @basket_collection = basket.map { |name, count| Array.new(count, name) }.flatten(1)
@@ -16,13 +18,13 @@ class Discount < Market
 
   def run
     promo_sets_calculation
-    @discount
+    discount
   end
 
   private
 
   def discount_percentage
-    quant = @basket_collection.uniq.count
+    quant = basket_collection.uniq.count
     case
     when quant == 3 then 0.05
     when quant == 4 then 0.1
@@ -31,7 +33,7 @@ class Discount < Market
   end
 
   def remove_product_from_basket(template)
-    template.map { |item| @basket_collection.delete(item) }
+    template.map { |item| basket_collection.delete(item) }
   end
 
   def discount_calculation(arr, percentage)
@@ -39,14 +41,14 @@ class Discount < Market
   end
 
   def promo_check(promo_const)
-    promo_const.map { |product| @basket_collection.include?(product) ? product : nil }.compact.count + 1 == promo_const.count
+    promo_const.map { |product| basket_collection.include?(product) ? product : nil }.compact.count + 1 == promo_const.count
   end
 
   def promo_calculation(promo_const)
     promo = promo_const
     promo_percentage = promo.pop
 
-    promo_sets = promo.map { |product| @basket_collection.count(product) }
+    promo_sets = promo.map { |product| basket_collection.count(product) }
     remove_product_from_basket(promo)
     @discount = @discount + discount_calculation(promo, promo_percentage) * promo_sets.min
   end
@@ -59,6 +61,6 @@ class Discount < Market
     promo_calculation(PROMO_DISCOUNT_A_L) if promo_check(PROMO_DISCOUNT_A_L)
     promo_calculation(PROMO_DISCOUNT_A_M) if promo_check(PROMO_DISCOUNT_A_M)
     remove_product_from_basket(NO_DISCOUNT_PRODUCT)
-    discount_calculation(@basket_collection, discount_percentage) if discount_percentage != nil
+    discount_calculation(basket_collection, discount_percentage) if discount_percentage != nil
   end
 end

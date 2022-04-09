@@ -1,4 +1,5 @@
 class Basket < Market
+
   attr_reader :basket
 
   def initialize

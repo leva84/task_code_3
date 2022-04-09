@@ -6,11 +6,10 @@ require 'cashbox'
 class App
   PROMPT = '>> '
 
-  attr_reader :view_price, :basket, :price
+  attr_reader :view_price, :basket
 
   def initialize
     market = Market.new
-    @price = market.price
     @view_price = market.view_price
     @basket = Basket.new
   end
