@@ -9,7 +9,7 @@ class Cashbox < Market
   end
 
   def grand_total
-    @basket.map { |key| price.values_at(key)[0].to_f }.inject(0, :+)
+    basket.map { |key| price.values_at(key)[0].to_f }.inject(0, :+)
   end
 
   def run

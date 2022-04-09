@@ -35,7 +35,7 @@ class Discount < Market
   end
 
   def discount_calculation(arr, percentage)
-    @discount = @discount + arr.map { |key| price.values_at(key)[0] * percentage }.inject(0, :+)
+    arr.map { |key| price.values_at(key)[0] * percentage }.inject(0, :+)
   end
 
   def promo_check(promo_const)
@@ -47,8 +47,8 @@ class Discount < Market
     promo_percentage = promo.pop
 
     promo_sets = promo.map { |product| @basket_collection.count(product) }
-    discount_calculation(promo, promo_percentage) * promo_sets.min
     remove_product_from_basket(promo)
+    @discount = @discount + discount_calculation(promo, promo_percentage) * promo_sets.min
   end
 
   def promo_sets_calculation
