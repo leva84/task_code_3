@@ -4,7 +4,6 @@ class Basket < Market
   def initialize
     super
     @basket = Hash.new
-    @cost = 0
   end
 
   def filling_basket(product, count)
